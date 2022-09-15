@@ -1,12 +1,10 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 :root {
     --bg-color: #dab894;
-    --clock-bg-color: #fff;
+    --clock-bg-color: rgba(255, 255, 255, 0.8);
     --clock-border-color: #916A53;
     --clock-symbol: #262626;
     --clock-sec-hand: red;
@@ -14,21 +12,20 @@
 
 body {
     background-color: var(--bg-color);
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100vh;
+    overflow: hidden;
 }
 
 .clock {
-    position: absolute;
     height: 200px;
     width: 200px;
     background-color: var(--clock-bg-color);
-    border-radius: 100%;
+    border-radius: 50%;
     border: 10px solid var(--clock-border-color);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+    position: relative;
 }
 
 .clock .top {
@@ -99,17 +96,28 @@ body {
     transform: rotate(135deg);
 }
 
-.clock .hour {
+.clock .hand {
+    --rotation: 0;
+    left: 50%
+    bottom: 50%;
+    width: 10px;
+    height: 40%;
+    position: absolute;
+    background-color: var(--clock-symbol);
+    transform-origin: bottom;
+    transform: rotate(calc(var(--rotation) * 1deg));
+}
+
+.clock .hand .hour {
     height: 100%;
     width: 3px;
     position: absolute;
     left: 0;
     right: 0;
     margin: 0 auto;
-    animation: time 60s infinite linear;
 }
 
-.clock .hour:before {
+.clock .time .hour:before {
     content: "";
     height: 60px;
     width: 3px;
@@ -118,17 +126,16 @@ body {
     top: 30px;
 }
 
-.clock .minute {
+.clock .time .minute {
     height: 100%;
     width: 1px;
     position: absolute;
     left: 0;
     right: 0;
     margin: 0 auto;
-    animation: time 30s infinite linear;
 }
 
-.clock .minute:before {
+.clock .time .minute:before {
     height: 40px;
     width: 1px;
     top: 50px;
@@ -137,17 +144,16 @@ body {
     position: absolute;
 }
 
-.clock .second {
+.clock .time .second {
     height: 100%;
     width: 2px;
     position: absolute;
     left: 0;
     right: 0;
     margin: 0 auto;
-    animation: time 15s infinite linear;
 }
 
-.clock .second:before {
+.clock .time .second:before {
     height: 45px;
     width: 2px;
     top: 45px;
