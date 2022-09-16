@@ -15,7 +15,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 100vh;
+    min-height: 100vh;
     overflow: hidden;
 }
 
@@ -26,6 +26,15 @@ body {
     border-radius: 50%;
     border: 10px solid var(--clock-border-color);
     position: relative;
+}
+
+.clock .number {
+    --rotation: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: rotate(var(--rotation));
 }
 
 .clock .top {
@@ -39,42 +48,13 @@ body {
     margin: 0 auto;
 }
 
-.clock .right {
-    position: absolute;
-    height: 3px;
-    width: 8px;
-    background-color: var(--clock-symbol);
-    top: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
-}
-
-.clock .bottom {
-    position: absolute;
-    height: 8px;
-    width: 3px;
-    background-color: var(--clock-symbol);
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-}
-
-.clock .left {
-    position: absolute;
-    height: 3px;
-    width: 8px;
-    background-color: var(--clock-symbol);
-    top: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
-}
+.clock .right { --rotation: 90deg; }
+.clock .bottom { --rotation: 180deg; }
+.clock .left { --rotation: 270deg; }
 
 .clock .center {
-    height: 6px;
-    width: 6px;
+    height: 10px;
+    width: 10px;
     background-color: var(--clock-symbol);
     border-radius: 100%;
     position: absolute;
@@ -98,66 +78,31 @@ body {
 
 .clock .hand {
     --rotation: 0;
-    left: 50%
-    bottom: 50%;
-    width: 10px;
-    height: 40%;
     position: absolute;
+    left: 50%;
+    bottom: 50%;
     background-color: var(--clock-symbol);
     transform-origin: bottom;
+    z-index: 10;
     transform: rotate(calc(var(--rotation) * 1deg));
 }
 
-.clock .hand .hour {
-    height: 100%;
-    width: 3px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-}
-
-.clock .time .hour:before {
-    content: "";
-    height: 60px;
-    width: 3px;
-    background-color: var(--clock-symbol);
-    position: absolute;
-    top: 30px;
-}
-
-.clock .time .minute {
-    height: 100%;
-    width: 1px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-}
-
-.clock .time .minute:before {
-    height: 40px;
-    width: 1px;
-    top: 50px;
-    content: "";
-    background-color: var(--clock-symbol);
-    position: absolute;
-}
-
-.clock .time .second {
-    height: 100%;
+.clock .second {
+    height: 40%;
     width: 2px;
     position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-}
-
-.clock .time .second:before {
-    height: 45px;
-    width: 2px;
-    top: 45px;
-    position: absolute;
-    content: "";
     background-color: var(--clock-sec-hand);
+}
+
+.clock .minute {
+    height: 35%;
+    width: 4px;
+    background-color: var(--clock-symbol);
+}
+
+.clock .hour {
+    height: 30%;
+    width: 6px;
+    position: absolute;
+    background-color: var(--clock-symbol);
 }
